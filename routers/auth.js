@@ -26,7 +26,7 @@ router.post('/login', async (req,res) => {
                 token: token
             })
         } else {
-            res.status(404).json({message: `invalid credentials`})
+            res.status(401).json({message: `.You shall not pass. invalid credentials`})
         }
     }
     catch (error){
