@@ -8,7 +8,11 @@ router.post('/register', async (req,res) => {
     try{
         const user = req.body;
         let result = await db.registerUser(user)
-        res.status(201).json({message: `user ${result} successfully registered`})
+        const token = generateToken(result)
+            res.status(201).json({
+                message: `Welcome ${result.username}`,
+                token: token
+            })
     }
     catch (error){
         res.status(500).json({error: `An error occurred during registeration. ${error}`})
@@ -21,7 +25,7 @@ router.post('/login', async (req,res) => {
         let user = await db.loginUser(payload)
         if(user){
             const token = generateToken(user)
-            res.status(201).json({
+            res.status(200).json({
                 message: `Welcome ${user.username}`,
                 token: token
             })

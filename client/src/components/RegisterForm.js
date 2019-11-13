@@ -3,16 +3,19 @@ import {Formik, Form, Field} from 'formik';
 import axios from 'axios';
 import './RegisterForm.scss'
 
-function LoginForm(props){
+function RegisterForm(props){
     const register = (formValue, actions) => {
+      debugger
         const newUser = {
           username: formValue.username,
           password: formValue.password,
           department: formValue.department
         }
+        debugger
     
         axios.post('http://localhost:5000/api/auth/register', newUser)
         .then(res => {
+          debugger
           localStorage.setItem('token', res.data.token)
           actions.resetForm();
           props.history.replace('/users')
@@ -22,7 +25,7 @@ function LoginForm(props){
         })
       }
 
-    const initialUser = {username: '', password: ''}
+    const initialUser = {username: '', password: '', department: ''}
     return(
         <Formik 
         initialValues = {initialUser}
@@ -36,6 +39,7 @@ function LoginForm(props){
                     <Field name='password' type='password' placeholder='password'/>
                     <label htmlFor='department'>department</label>
                     <Field as="select" name="department">
+                        <option value="" label="Select a department" />
                         <option value="finance">Finance</option>
                         <option value="sales">Sales</option>
                     </Field>
@@ -47,4 +51,4 @@ function LoginForm(props){
 
 }
 
-export default LoginForm;
+export default RegisterForm;

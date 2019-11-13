@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
-import axios from 'axios';
-import {Route, Redirect} from 'react-router-dom';
+import React from 'react';
+import {Route} from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Navbar from './components/Navbar';

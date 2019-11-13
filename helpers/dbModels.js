@@ -7,9 +7,15 @@ module.exports = {
     getUsers
 }
 
-function registerUser(user){
+async function registerUser(user){
     user.password = bcrypt.hashSync(user.password)
-    return db('users').insert(user)
+    const id = await db('users').insert(user)
+    const result = await db('users').where({id: id[0]}).first()
+    if(result){
+        return result
+    } else {
+        return null
+    }
 }
 
 async function loginUser(user){
