@@ -1,0 +1,15 @@
+.users {
+    display:flex;
+    flex-direction: column;
+
+    .user {
+        border: 1px solid black;
+        margin: 20px;
+        padding: 20px;
+        width: 300px;
+
+        h2 {
+            text-align: left;
+        }
+    }
+}
